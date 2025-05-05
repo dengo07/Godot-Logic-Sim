@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://kj62wkrmqbbo"]
+
+[ext_resource type="Script" path="res://scripts/not_gate.gd" id="1_6pcj5"]
+[ext_resource type="Texture2D" uid="uid://dgd5d8nkcvrc5" path="res://sprites/notGatePdf.png" id="1_qmqr1"]
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="2_pug7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4i16c"]
+radius = 48.0104
+
+[node name="NotGate" type="Node2D" groups=["gate"]]
+script = ExtResource("1_6pcj5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qmqr1")
+
+[node name="inputA" parent="." instance=ExtResource("2_pug7h")]
+position = Vector2(-79, 0)
+
+[node name="output" parent="." instance=ExtResource("2_pug7h")]
+position = Vector2(83, 1)
+is_output = true
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-39, -33, -39, 33, 23, 0, -40, -33)
+width = 7.535
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PackedVector2Array(41, 0, 73, 0)
+width = 6.625
+default_color = Color(0, 0, 0, 1)
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+shape = SubResource("CircleShape2D_4i16c")
+
+[connection signal="input_event" from="DragArea" to="." method="_on_drag_area_input_event"]

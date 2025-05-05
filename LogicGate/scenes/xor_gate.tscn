@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhwyf0qwgssgm"]
+
+[ext_resource type="Script" path="res://scripts/xor_gate.gd" id="1_7r80b"]
+[ext_resource type="Texture2D" uid="uid://pfwdf5eldgsl" path="res://sprites/xorGatePdf.png" id="1_atb13"]
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="2_abo77"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwu76"]
+
+[node name="XorGate" type="Node2D"]
+script = ExtResource("1_7r80b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_atb13")
+
+[node name="inputA" parent="." instance=ExtResource("2_abo77")]
+position = Vector2(-85, -20)
+
+[node name="inputB" parent="." instance=ExtResource("2_abo77")]
+position = Vector2(-86, 19)
+
+[node name="output" parent="." instance=ExtResource("2_abo77")]
+material = SubResource("ShaderMaterial_iwu76")
+position = Vector2(86, 1)
+is_output = true

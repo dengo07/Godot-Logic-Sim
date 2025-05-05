@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=3 uid="uid://ce2j0fd54e2cv"]
+
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_35848"]
+[ext_resource type="PackedScene" uid="uid://cdoi7ovi4jxkx" path="res://scenes/and_gate.tscn" id="1_c75og"]
+[ext_resource type="PackedScene" uid="uid://cr1nyak3oumaq" path="res://scenes/button.tscn" id="2_61eoi"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_u85ph"]
+[ext_resource type="PackedScene" uid="uid://6nj4jefcbo7u" path="res://scenes/or_gate.tscn" id="5_a11mg"]
+[ext_resource type="PackedScene" uid="uid://bhwyf0qwgssgm" path="res://scenes/xor_gate.tscn" id="6_ojtv7"]
+[ext_resource type="Script" path="res://scripts/WireManager.gd" id="7_jej4v"]
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="8_u017s"]
+[ext_resource type="Shader" path="res://main_scene.gdshader" id="9_t347f"]
+[ext_resource type="Script" path="res://scripts/ColorRect.gd" id="10_v3utj"]
+
+[sub_resource type="Environment" id="Environment_424mx"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 6.1
+glow_strength = 1.86
+glow_bloom = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28ltv"]
+shader = ExtResource("9_t347f")
+shader_parameter/grid_size = Vector2(115, 64)
+shader_parameter/line_width = 0.1
+shader_parameter/grid_color = Color(0.760784, 0.760784, 0.760784, 0.286275)
+shader_parameter/background_color = Color(0.384314, 0.490196, 0.788235, 1)
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_35848")
+
+[node name="AndGate" parent="." instance=ExtResource("1_c75og")]
+position = Vector2(596, 257)
+
+[node name="button" parent="." instance=ExtResource("2_61eoi")]
+position = Vector2(280, 98)
+
+[node name="button2" parent="." instance=ExtResource("2_61eoi")]
+position = Vector2(279, 324)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 322)
+script = ExtResource("3_u85ph")
+
+[node name="button3" parent="." instance=ExtResource("2_61eoi")]
+position = Vector2(290, 548)
+
+[node name="OrGate" parent="." instance=ExtResource("5_a11mg")]
+position = Vector2(1000, 280)
+
+[node name="XorGate" parent="." instance=ExtResource("6_ojtv7")]
+position = Vector2(994, 510)
+
+[node name="WireManager" type="Node2D" parent="."]
+script = ExtResource("7_jej4v")
+
+[node name="Node" parent="." instance=ExtResource("8_u017s")]
+position = Vector2(656, 470)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_424mx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_28ltv")
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+script = ExtResource("10_v3utj")

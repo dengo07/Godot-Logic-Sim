@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://6nj4jefcbo7u"]
+
+[ext_resource type="Script" path="res://scripts/or_gate.gd" id="1_482ua"]
+[ext_resource type="Texture2D" uid="uid://f71gcnl34xbq" path="res://sprites/orGatePdf.png" id="1_c7vam"]
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="2_wovtc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7nbx2"]
+radius = 48.0104
+
+[node name="OrGate" type="Node2D" groups=["gate"]]
+script = ExtResource("1_482ua")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c7vam")
+
+[node name="inputA" parent="." instance=ExtResource("2_wovtc")]
+position = Vector2(-69, -19)
+
+[node name="inputB" parent="." instance=ExtResource("2_wovtc")]
+position = Vector2(-70, 20)
+
+[node name="output" parent="." instance=ExtResource("2_wovtc")]
+position = Vector2(70, 0)
+is_output = true
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+shape = SubResource("CircleShape2D_7nbx2")
+
+[connection signal="input_event" from="DragArea" to="." method="_on_drag_area_input_event"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://camf07iqhlyhd"]
+
+[ext_resource type="Script" path="res://scripts/connector.gd" id="1_24l0o"]
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="1_vx4s1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_obfv3"]
+radius = 12.0416
+
+[node name="connector" type="Node2D"]
+script = ExtResource("1_24l0o")
+
+[node name="Node" parent="." instance=ExtResource("1_vx4s1")]
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+shape = SubResource("CircleShape2D_obfv3")
+
+[connection signal="input_event" from="DragArea" to="." method="_on_drag_area_input_event"]

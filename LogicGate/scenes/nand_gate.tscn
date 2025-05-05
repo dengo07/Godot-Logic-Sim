@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b35ln44trbwsp"]
+
+[ext_resource type="Texture2D" uid="uid://bacfbo7njawoi" path="res://sprites/nandGate.png" id="1_f6w7l"]
+[ext_resource type="Script" path="res://scripts/nand_gate.gd" id="1_m6j0d"]
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="2_xshsi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q8bpj"]
+radius = 41.0122
+
+[node name="NandGate" type="Node2D" groups=["gate"]]
+script = ExtResource("1_m6j0d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.695, 0.695)
+texture = ExtResource("1_f6w7l")
+
+[node name="inputA" parent="." instance=ExtResource("2_xshsi")]
+position = Vector2(-63, -18)
+
+[node name="inputB" parent="." instance=ExtResource("2_xshsi")]
+position = Vector2(-65, 18)
+
+[node name="output" parent="." instance=ExtResource("2_xshsi")]
+position = Vector2(68, 0)
+is_output = true
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+position = Vector2(-6, 0)
+shape = SubResource("CircleShape2D_q8bpj")
+
+[connection signal="input_event" from="DragArea" to="." method="_on_drag_area_input_event"]

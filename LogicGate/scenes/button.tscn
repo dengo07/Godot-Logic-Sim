@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr1nyak3oumaq"]
+
+[ext_resource type="Script" path="res://scripts/button.gd" id="1_88un1"]
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="2_6n5hc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ssi1n"]
+size = Vector3(73.77, 29.94, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu061"]
+size = Vector2(73.97, 30.195)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djy4b"]
+radius = 48.0104
+
+[node name="button" type="Node2D" groups=["gate"]]
+script = ExtResource("1_88un1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(1, 1, 1, 0.192157)
+scale = Vector2(1.47, 1.47)
+mesh = SubResource("BoxMesh_ssi1n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_yu061")
+
+[node name="Node" parent="." instance=ExtResource("2_6n5hc")]
+position = Vector2(0, 36)
+rotation = -0.101752
+is_output = true
+
+[node name="Line2D" type="Line2D" parent="."]
+scale = Vector2(1.545, 1.545)
+points = PackedVector2Array(-37, -14, -37, 14, 37, 14, 37, -14, -37, -14)
+width = 5.12
+default_color = Color(0, 0, 0, 1)
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+shape = SubResource("CircleShape2D_djy4b")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="value_changed" from="Node" to="." method="_on_node_value_changed"]
+[connection signal="input_event" from="DragArea" to="." method="_on_drag_area_input_event"]

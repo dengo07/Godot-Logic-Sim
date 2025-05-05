@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://ce2j0fd54e2cv"]
+
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_35848"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_u85ph"]
+[ext_resource type="Script" path="res://scripts/SelectionManager.gd" id="7_7ve3k"]
+[ext_resource type="Script" path="res://scripts/WireManager.gd" id="7_jej4v"]
+[ext_resource type="Shader" path="res://main_scene.gdshader" id="9_t347f"]
+[ext_resource type="Script" path="res://scripts/GateDrag-DropHandler.gd" id="10_gpnkl"]
+[ext_resource type="PackedScene" uid="uid://c02uorgsfubdp" path="res://scenes/ui.tscn" id="12_75sh3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28ltv"]
+shader = ExtResource("9_t347f")
+shader_parameter/grid_size = Vector2(565.085, 319.785)
+shader_parameter/line_width = 0.1
+shader_parameter/grid_color = Color(0.760784, 0.760784, 0.760784, 0.286275)
+shader_parameter/background_color = Color(0.278431, 0.419608, 0.909804, 0.34902)
+
+[sub_resource type="Environment" id="Environment_424mx"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 6.1
+glow_strength = 1.86
+glow_bloom = 0.5
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_35848")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2(12655.2, 7139)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+z_index = -100
+texture_repeat = 3
+material = SubResource("ShaderMaterial_28ltv")
+offset_right = 1152.0
+offset_bottom = 649.0
+scale = Vector2(11, 11)
+mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 322)
+position_smoothing_enabled = true
+script = ExtResource("3_u85ph")
+
+[node name="WireManager" type="Node2D" parent="."]
+script = ExtResource("7_jej4v")
+
+[node name="GateDrag-DropHandler" type="Node2D" parent="."]
+script = ExtResource("10_gpnkl")
+
+[node name="ui" parent="." instance=ExtResource("12_75sh3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_424mx")
+
+[node name="SelectionManager" type="Node2D" parent="."]
+script = ExtResource("7_7ve3k")

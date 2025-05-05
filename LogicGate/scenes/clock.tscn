@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqpdq5skwwioe"]
+
+[ext_resource type="PackedScene" uid="uid://bg81ju7pubray" path="res://scenes/node.tscn" id="1_0boit"]
+[ext_resource type="Script" path="res://scripts/clock.gd" id="1_tdft8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2f056"]
+size = Vector3(100, 100, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lr0dx"]
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwkou"]
+size = Vector2(111, 104)
+
+[node name="Clock" type="Node2D" groups=["gate"]]
+script = ExtResource("1_tdft8")
+frequency = 0.5
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("BoxMesh_2f056")
+
+[node name="Output" parent="." instance=ExtResource("1_0boit")]
+position = Vector2(71, 0)
+is_output = true
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -30.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = 18.0
+text = "CLOCK"
+label_settings = SubResource("LabelSettings_lr0dx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -45, -54, -45)
+default_color = Color(0, 0, 0, 1)
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_bwkou")
+
+[connection signal="input_event" from="DragArea" to="." method="_on_drag_area_input_event"]

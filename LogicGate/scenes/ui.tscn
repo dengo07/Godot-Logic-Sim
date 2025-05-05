@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://c02uorgsfubdp"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_hwmm6"]
+[ext_resource type="Texture2D" uid="uid://v4v6f2q5bj6b" path="res://sprites/andGatePdf.png" id="1_im2m1"]
+[ext_resource type="Texture2D" uid="uid://f71gcnl34xbq" path="res://sprites/orGatePdf.png" id="3_lkgyq"]
+[ext_resource type="Texture2D" uid="uid://dgd5d8nkcvrc5" path="res://sprites/notGatePdf.png" id="4_a5oso"]
+[ext_resource type="Texture2D" uid="uid://bacfbo7njawoi" path="res://sprites/nandGate.png" id="5_5jd4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvtir"]
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_hwmm6")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_right = 106.0
+offset_bottom = 648.0
+
+[node name="AndButton" type="Button" parent="ItemList"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 218.85
+offset_bottom = 203.525
+scale = Vector2(0.48, 0.48)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvtir")
+icon = ExtResource("1_im2m1")
+
+[node name="OrButton" type="Button" parent="ItemList"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 202.0
+offset_right = 218.85
+offset_bottom = 405.525
+scale = Vector2(0.48, 0.48)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvtir")
+icon = ExtResource("3_lkgyq")
+
+[node name="ButtonButton" type="Button" parent="ItemList"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 101.0
+offset_right = 218.85
+offset_bottom = 304.525
+scale = Vector2(0.48, 0.48)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvtir")
+text = "BUTTON"
+
+[node name="NotButton" type="Button" parent="ItemList"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 404.0
+offset_right = 218.85
+offset_bottom = 607.525
+scale = Vector2(0.48, 0.48)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvtir")
+icon = ExtResource("4_a5oso")
+
+[node name="ClockButton" type="Button" parent="ItemList"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 303.0
+offset_right = 218.85
+offset_bottom = 506.525
+scale = Vector2(0.48, 0.48)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvtir")
+text = "CLOCK"
+
+[node name="NandButton" type="Button" parent="ItemList"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 504.0
+offset_right = 218.85
+offset_bottom = 707.525
+scale = Vector2(0.48, 0.48)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_lvtir")
+icon = ExtResource("5_5jd4k")
+icon_alignment = 1
+
+[connection signal="pressed" from="ItemList/AndButton" to="." method="_on_and_button_pressed"]
+[connection signal="pressed" from="ItemList/OrButton" to="." method="_on_or_button_pressed"]
+[connection signal="pressed" from="ItemList/ButtonButton" to="." method="_on_button_button_pressed"]
+[connection signal="pressed" from="ItemList/NotButton" to="." method="_on_not_button_pressed"]
+[connection signal="pressed" from="ItemList/ClockButton" to="." method="_on_clock_button_pressed"]
+[connection signal="pressed" from="ItemList/NandButton" to="." method="_on_nand_button_pressed"]
