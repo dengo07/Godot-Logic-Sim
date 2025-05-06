@@ -6,11 +6,17 @@ A visual and interactive logic gate simulator built with the Godot Engine. This 
 ## 🎯 Features
 
 - 🧱 Basic logic gates: "AND, OR, NOT,NAND" for now..
+- 
 - 🖱️ Drag-and-drop interface for placing and connecting gates
+- 
 - 🔌 Real-time signal propagation between connected nodes
+- 
 - 🧠 Custom logic circuits creation and simulation
+- 
 - 🖼️ Multi-select and copy-paste functionality for efficient editing
+ 
 - 📦 Modular and scalable codebase for future enhancements
+
 
 ## 🚀 Getting Started
 
@@ -53,12 +59,19 @@ Users can connect gates visually by drawing cables between ports.
 
  Controls:
   ."Left click" on logic gates in the left panel to  instatiate them.
+  
   ."Right Click+drag" to highligh gate or gate groups to be able to drag,copy,paste or delete them.
+  
   ."Delete" to delete the gates after higlighting them.
+  
   ."Mouse Left Button HOLD " to drag gates or gate groups. 
+  
   ."Right Click" on logic output ports to drag wire from them.
+  
   ."Right Click" again on input ports to terminate wiring.
+  
   ."CTRL+c" to copy node or node groups.
+  
   ."CTRL+v" or "mouse wheel click" to paste gate or gate groups,
 
 🤝 Contributing
